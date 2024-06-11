@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from datetime import date
+from django.contrib.auth.models import User
 
 MEALS = (
   ('B', 'Breakfast'),
@@ -26,6 +27,8 @@ class Cat(models.Model):
   breed = models.CharField(max_length=100)
   description = models.TextField(max_length=250)
   age = models.IntegerField()
+  toys = models.ManyToManyField(Toy)
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
 
   # Changing this instance method
   # does not impact the database, therefore
@@ -33,6 +36,8 @@ class Cat(models.Model):
   def __str__(self):
     return f'{self.name} ({self.id})'
 
+# * By using get_absolute_url in your CatCreate view, Django will automatically use the URL 
+# returned by this method as the success_url after the form is successfully submitted.
   def get_absolute_url(self):
     return reverse('detail', kwargs={'cat_id': self.id})
 

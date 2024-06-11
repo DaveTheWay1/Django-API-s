@@ -124,6 +124,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+# Add this variable to specify where successful logins should redirect to
+LOGIN_REDIRECT_URL = '/cats/'
+# Add this variable to specify where logging out redirects to
+# LOGOUT_REDIRECT_URL = '/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

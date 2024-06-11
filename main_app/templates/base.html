@@ -19,11 +19,22 @@
                     <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;Cat Collector</a></li>
                 </ul>
                 <ul class="right">
-                  <li><a href="{% url 'about' %}">About</a></li>
-                  <li><a href="{% url 'toys_create' %}">Add a Toy</a></li>
-                  <li><a href="{% url 'toys_index' %}">View All Toys</a></li>
-                  <li><a href="{% url 'cats_create' %}">Add a Cat</a></li>
-                  <li><a href="{% url 'index' %}">View All My Cats</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'toys_create' %}">Add a Toy</a></li>
+                    <li><a href="{% url 'toys_index' %}">View All Toys</a></li>
+                    <li><a href="{% url 'cats_create' %}">Add a Cat</a></li>
+                    <li><a href="{% url 'index' %}">View All My Cats</a></li>
+                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    <!-- <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit">logout</button>
+                    </form> -->
+                    {% else %}
+                    <!-- New Sign Up link -->
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                    <li><a href="{% url 'login' %}">Log In</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
